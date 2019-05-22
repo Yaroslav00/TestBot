@@ -1,0 +1,29 @@
+doctype html
+html
+    head
+        title Bot
+        link(rel='stylesheet', href='/css/main.css')
+
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+    body.body
+        header.for_header
+            h1.h1 Bot
+        main.main
+            div.button_group
+                form.form(method="post" action="/start_bot")
+                    div.for_btn
+                        button.start_button Start Bot
+            div.for_form
+                form.form(method="post" action="/")
+                     label
+                         h3 From
+
+                         input.input(type="date" name="from" min="2018-01-01")
+
+                     label
+                         h3 To
+
+                         input.input(type="date" name="To" min="2018-01-01")
+                     div.button_group
+
+                         button.for_submit_button Start backtesting

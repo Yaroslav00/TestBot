@@ -1,0 +1,1 @@
+Date of trade	Currency	Purchase price	Selling price	Profit
