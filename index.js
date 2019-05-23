@@ -251,7 +251,7 @@ async function test(start,finish){
                     profit += 1000*(previous_close - ask_price.BTCUSDT);
                     let date1 = new Date(current_time);
                     // Write results of trade to the file
-                    fs.appendFile('backtest.txt', date1.toDateString() +'\t'+"BTCUSDT" +'\t'+ ask_price.BTCUSDT + '\t'+ previous_close + '\t'+ ((profit - previous_profit)*100/previous_profit).toString() + '%' +'\n', function (err) {
+                    fs.appendFile('backtest.txt', date1.toDateString() +'\t'+"BTCUSDT" +'\t'+ ask_price.BTCUSDT + '\t'+ previous_close + '\t'+ ((profit - previous_profit)*100/1000).toString() + '%' +'\n', function (err) {
                         if (err)
                             console.log(err);
 
