@@ -194,7 +194,7 @@ async function test(start,finish){
                     ready.BTCUSDT = true;
                     take_profit.BTCUSDT = highest_point;
                     stop_loss.BTCUSDT = current_candle_close - 3*(highest_point-current_candle_close);
-
+                    // Searching the highest point during the last 15 minutes
                     for (let j= i-15; j < i+1; j++)
                     {
 
@@ -211,22 +211,8 @@ async function test(start,finish){
                         stop_loss.BNBUSDT = current_candle_close - 3 * (highest_point - current_candle_close);
                     }
 
-                    // Searching the highest point during the last 15 minutes
-                    for (let j= i-15; j < i+1; j++)
-                    {
-
-                        highest_points.push(parseFloat(list_of_candles_bnb_btc[j][2]));
-                    }
-
-                    current_candle_close = list_of_candles_bnb_btc[i][4];
-                    highest_point = Math.max(...highest_points);
-
-                    if(highest_point - current_candle_close >=100 && !ready.BNBBTC && !bought.BNBBTC) {
-                        ready.BNBBTC = true;
-                        take_profit.BNBBTC = highest_point;
-                        stop_loss.BNBBTC = current_candle_close - 3 * (highest_point - current_candle_close);
-                    }
-
+                    
+                    
                 }
 
 
