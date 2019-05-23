@@ -48,7 +48,8 @@ app.post('/start_bot', function (req, res) {
     binance.websockets.chart("BTCUSDT", "1m", (symbol, interval, chart) => {
         //
         if( !ready && !bought) {
-
+            console.clear();
+            console.log("Waiting for signal");
             let tick = binance.last(chart);
             // Current price
             let last = chart[tick].close;
