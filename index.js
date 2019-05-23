@@ -210,7 +210,7 @@ async function test(start,finish){
                         stop_loss.BNBUSDT = current_candle_close - 3 * (highest_point - current_candle_close);
                     }
 
-
+                    // Searching the highest point during the last 15 minutes
                     for (let j= i-15; j < i+1; j++)
                     {
 
@@ -233,7 +233,7 @@ async function test(start,finish){
             }
 
 
-
+            // Waiting for signals
 
             if(ready.BTCUSDT && !bought.BTCUSDT && current_time < finish) {
 
@@ -261,6 +261,7 @@ async function test(start,finish){
                     let previous_profit = profit;
                     profit += 1000*(previous_close - ask_price.BTCUSDT);
                     let date1 = new Date(current_time);
+                    // Write results of trade to the file
                     fs.appendFile('backtest.txt', date1.toDateString() +'\t'+"BTCUSDT" + '\t'+ ((profit - previous_profit)*100/previous_profit).toString() + '%' +'\n', function (err) {
                         if (err)
                             console.log(err);
@@ -306,6 +307,7 @@ async function test(start,finish){
                     let previous_profit = profit;
                     profit += 1000*(previous_close - ask_price.BNBUSDT);
                     let date1 = new Date(current_time);
+                    // Write results of trade to the file
                     fs.appendFile('backtest.txt', date1.toDateString() +'\t'+"BNBUSDT"+'\t'+ ask_price + '\t'+ previous_close +'\t'+ ((profit - previous_profit)*100/1000).toString() + '%'+'\n', function (err) {
                         if (err)
                             console.log(err);
@@ -323,7 +325,7 @@ async function test(start,finish){
             }
 
 
-
+            // Increasing current time with 1 minute
             current_time+=60000;
 
 
@@ -336,6 +338,7 @@ async function test(start,finish){
     }
     console.log("Backtesting finished");
 }
+// Dealing with post request
 app.post('/', function (req,res) {
 
     let dateFrom = (new Date(req.body.from)).getTime();
@@ -344,6 +347,7 @@ app.post('/', function (req,res) {
 
     test(dateFrom
         ,dateTo);
+
     res.render('start');
 
 
