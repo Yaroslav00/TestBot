@@ -129,7 +129,9 @@ async function test(start,finish){
     var ask_price={"BTCUSDT":0, "BNBUSDT":0};
     // Start write the file
     fs.writeFile('backtest.txt', 'Date of trade' +'\t'+  'Currency'+ '\t' +
-        'Purchase price'+'\t'+'Selling price'+'\t'+ 'Profit');
+        'Purchase price'+'\t'+'Selling price'+'\t'+ 'Profit', function (err) {
+            if (err) throw err;
+          });
     // Going through historical data since the start timestamp till the finish timestamp
     while(current_time < finish)
     {
@@ -249,7 +251,7 @@ async function test(start,finish){
                     profit += 1000*(previous_close - ask_price.BTCUSDT);
                     let date1 = new Date(current_time);
                     // Write results of trade to the file
-                    fs.appendFile('backtest.txt', date1.toDateString() +'\t'+"BTCUSDT" + '\t'+ ((profit - previous_profit)*100/previous_profit).toString() + '%' +'\n', function (err) {
+                    fs.appendFile('backtest.txt', date1.toDateString() +'\t'+"BTCUSDT" +'\t'+ ask_price.BTCUSDT + '\t'+ previous_close + '\t'+ ((profit - previous_profit)*100/previous_profit).toString() + '%' +'\n', function (err) {
                         if (err)
                             console.log(err);
 
@@ -295,7 +297,7 @@ async function test(start,finish){
                     profit += 1000*(previous_close - ask_price.BNBUSDT);
                     let date1 = new Date(current_time);
                     // Write results of trade to the file
-                    fs.appendFile('backtest.txt', date1.toDateString() +'\t'+"BNBUSDT"+'\t'+ ask_price + '\t'+ previous_close +'\t'+ ((profit - previous_profit)*100/1000).toString() + '%'+'\n', function (err) {
+                    fs.appendFile('backtest.txt', date1.toDateString() +'\t'+"BNBUSDT"+'\t'+ ask_price.BNBUSDT + '\t'+ previous_close +'\t'+ ((profit - previous_profit)*100/1000).toString() + '%'+'\n', function (err) {
                         if (err)
                             console.log(err);
 
