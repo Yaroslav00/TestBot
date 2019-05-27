@@ -156,7 +156,7 @@ async function test(start,finish){
         });
 
         let promise_bnb_usd = new Promise(function(resolve, reject) {
-            binance.candlesticks("BTCUSDT", "1m", (error, ticks, symbol) => {
+            binance.candlesticks("BNBUSDT", "1m", (error, ticks, symbol) => {
 
                 resolve(ticks);
 
@@ -332,7 +332,7 @@ app.post('/', function (req,res) {
 
     let dateFrom = (new Date(req.body.from)).getTime();
     let dateTo = (new Date(req.body.To)).getTime();
-
+    console.log(1);
 
     test(dateFrom
         ,dateTo);
